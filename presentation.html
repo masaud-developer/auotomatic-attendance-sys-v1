@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AttendEdge | Institutional Presentation</title>
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', '-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#EEF2FF',
+              100: '#E0E7FF',
+              500: '#6366F1',
+              600: '#4F46E5',
+              700: '#4338CA',
+              900: '#312E81',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif;
+      letter-spacing: -0.015em;
+      background-color: #0B0F17;
+      color: #0F172A;
+      overflow: hidden;
+      user-select: none;
+    }
+    .slide {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .slide.active {
+      display: flex;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.995); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @media print {
+      body { overflow: visible !important; background: white !important; }
+      .slide { display: flex !important; page-break-after: always; height: 100vh; width: 100vw; }
+      .nav-controls { display: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-900">
+
+  <!-- Presentation Progress Bar -->
+  <div class="fixed top-0 left-0 right-0 h-1 bg-slate-800 z-50">
+    <div id="progressBar" class="h-full bg-indigo-600 transition-all duration-300" style="width: 10%;"></div>
+  </div>
+
+  <!-- Slide 1: Title (Dark Theme) -->
+  <section class="slide active flex-col justify-between p-12 lg:p-20 bg-slate-900 text-white relative">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(79,70,229,0.25),rgba(255,255,255,0))] pointer-events-none"></div>
+    <div class="relative z-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800 border border-indigo-500/30 text-indigo-300 text-xs font-bold tracking-wide uppercase">
+        <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+        AI-Powered Biometric System
+      </div>
+    </div>
+    <div class="relative z-10 my-auto max-w-5xl">
+      <h1 class="text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6">
+        Attend<span class="text-indigo-400">Edge</span>
+      </h1>
+      <h2 class="text-2xl lg:text-3xl font-bold text-slate-200 mb-4 leading-snug">
+        Enterprise Face Recognition & Automated Attendance Management System
+      </h2>
+      <p class="text-lg text-slate-400 max-w-3xl leading-relaxed">
+        Next-Generation Contactless Biometrics with Real-Time Liveness Verification, Anti-Spoofing Intelligence, and Complete Audit Compliance.
+      </p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
+        <div class="p-4 rounded-xl bg-slate-800/80 border border-slate-700/60 backdrop-blur-sm">
+          <div class="text-indigo-400 text-sm font-bold">Biometrics</div>
+          <div class="text-white text-base font-semibold mt-1">OpenCV YuNet + SFace</div>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-800/80 border border-slate-700/60 backdrop-blur-sm">
+          <div class="text-emerald-400 text-sm font-bold">Anti-Spoofing</div>
+          <div class="text-white text-base font-semibold mt-1">Active Challenge Liveness</div>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-800/80 border border-slate-700/60 backdrop-blur-sm">
+          <div class="text-sky-400 text-sm font-bold">Session Engine</div>
+          <div class="text-white text-base font-semibold mt-1">On-Demand Custom Hours</div>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-800/80 border border-slate-700/60 backdrop-blur-sm">
+          <div class="text-amber-400 text-sm font-bold">Dual RBAC</div>
+          <div class="text-white text-base font-semibold mt-1">Admin + Student Portals</div>
+        </div>
+      </div>
+    </div>
+    <div class="relative z-10 flex items-center justify-between border-t border-slate-800 pt-6 text-sm text-slate-400">
+      <div>Presented by: <span class="text-slate-200 font-semibold">Masaud Hasan & Project Team</span></div>
+      <div>Department of Computer Science & Engineering</div>
+    </div>
+  </section>
+
+  <!-- Slide 2: The Problem -->
+  <section class="slide flex-col justify-between p-12 lg:p-16 bg-slate-50 text-slate-900">
+    <div>
+      <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Context & Motivation</span>
+      <h2 class="text-4xl font-extrabold text-slate-900 tracking-tight mt-1">The Problem with Conventional Attendance Systems</h2>
+      <p class="text-slate-500 text-base mt-2">Traditional manual roll calls and RFID punch-cards introduce operational delays and severe fraud vulnerabilities.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto">
+      <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase bg-rose-50 text-rose-600 border border-rose-200">Security Vulnerability</span>
+          <h3 class="text-xl font-bold text-slate-900 mt-4 mb-3">Proxy Marking & Buddy Punching</h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-4">Paper register signatures are easily forged, and RFID cards are routinely tapped by friends for absent students.</p>
+        </div>
+        <div class="text-xs font-semibold text-rose-600 bg-rose-50/50 p-3 rounded-lg border border-rose-100">
+          Result: Zero authentic physical presence verification.
+        </div>
+      </div>
+      <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase bg-amber-50 text-amber-600 border border-amber-200">Classroom Inefficiency</span>
+          <h3 class="text-xl font-bold text-slate-900 mt-4 mb-3">10–15 Minutes Lost Per Lecture</h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-4">Calling out 60+ student roll numbers consumes massive instructional time, resulting in over 40+ wasted lecture hours each semester.</p>
+        </div>
+        <div class="text-xs font-semibold text-amber-600 bg-amber-50/50 p-3 rounded-lg border border-amber-100">
+          Result: Significant instructional time wasted every week.
+        </div>
+      </div>
+      <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase bg-indigo-50 text-indigo-600 border border-indigo-200">Administrative Overhead</span>
+          <h3 class="text-xl font-bold text-slate-900 mt-4 mb-3">Fragmented Records & Disputes</h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-4">Scattered register books and Excel sheets prevent real-time visibility, sparking contentious eligibility disputes before exams.</p>
+        </div>
+        <div class="text-xs font-semibold text-indigo-600 bg-indigo-50/50 p-3 rounded-lg border border-indigo-100">
+          Result: High administrative burden & audit vulnerability.
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center justify-between text-xs text-slate-400 border-t border-slate-200 pt-4">
+      <span>AttendEdge Institutional Presentation</span>
+      <span>Slide 02 / 10</span>
+    </div>
+  </section>
+
+  <!-- Slide 3: Architecture -->
+  <section class="slide flex-col justify-between p-12 lg:p-16 bg-slate-50 text-slate-900">
+    <div>
+      <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Engineering & Design</span>
+      <h2 class="text-4xl font-extrabold text-slate-900 tracking-tight mt-1">End-to-End System Architecture</h2>
+      <p class="text-slate-500 text-base mt-2">Decoupled full-stack architecture built for high concurrency, zero latency, and cross-platform flexibility.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto">
+      <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+        <div class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase bg-indigo-50 text-indigo-600 border border-indigo-200 mb-4">Frontend Layer</div>
+        <h3 class="text-xl font-bold text-slate-900 mb-1">React 19 + TypeScript</h3>
+        <p class="text-xs text-indigo-600 font-semibold mb-4">Vite • Tailwind CSS • Apple UI Aesthetic</p>
+        <ul class="text-sm text-slate-600 space-y-2.5">
+          <li class="flex items-start gap-2"><span class="text-indigo-600 font-bold">•</span> Complete hardware stop releasing webcam tracks instantly.</li>
+          <li class="flex items-start gap-2"><span class="text-indigo-600 font-bold">•</span> Responsive dual portals (Admin management & Student dashboard).</li>
+          <li class="flex items-start gap-2"><span class="text-indigo-600 font-bold">•</span> Real-time scanning HUD with animated laser reticle.</li>
+          <li class="flex items-start gap-2"><span class="text-indigo-600 font-bold">•</span> Web Audio API synthesized audio verification chimes.</li>
+        </ul>
+      </div>
+      <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+        <div class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase bg-sky-50 text-sky-600 border border-sky-200 mb-4">Backend API Layer</div>
+        <h3 class="text-xl font-bold text-slate-900 mb-1">FastAPI + Python 3.11</h3>
+        <p class="text-xs text-sky-600 font-semibold mb-4">Uvicorn ASGI • SQLAlchemy ORM • WAL Mode</p>
+        <ul class="text-sm text-slate-600 space-y-2.5">
+          <li class="flex items-start gap-2"><span class="text-sky-600 font-bold">•</span> Asynchronous non-blocking architecture handling multi-client scans.</li>
+          <li class="flex items-start gap-2"><span class="text-sky-600 font-bold">•</span> JWT HS256 stateless authentication with Bcrypt password hashing.</li>
+          <li class="flex items-start gap-2"><span class="text-sky-600 font-bold">•</span> Database uniqueness constraint on (session_id, student_id).</li>
+          <li class="flex items-start gap-2"><span class="text-sky-600 font-bold">•</span> Interactive OpenAPI Swagger docs auto-generated at /docs.</li>
+        </ul>
+      </div>
+      <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+        <div class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase bg-emerald-50 text-emerald-600 border border-emerald-200 mb-4">Biometric Engine</div>
+        <h3 class="text-xl font-bold text-slate-900 mb-1">OpenCV Deep Learning</h3>
+        <p class="text-xs text-emerald-600 font-semibold mb-4">YuNet Detector • SFace 128-D CNN</p>
+        <ul class="text-sm text-slate-600 space-y-2.5">
+          <li class="flex items-start gap-2"><span class="text-emerald-600 font-bold">•</span> Deep neural network YuNet extracting 5 facial landmarks.</li>
+          <li class="flex items-start gap-2"><span class="text-emerald-600 font-bold">•</span> SFace 128-dimensional L2-normalized float embedding vectors.</li>
+          <li class="flex items-start gap-2"><span class="text-emerald-600 font-bold">•</span> Cosine similarity matching in under 150 milliseconds.</li>
+          <li class="flex items-start gap-2"><span class="text-emerald-600 font-bold">•</span> Automated duplicate face prevention upon enrollment.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="flex items-center justify-between text-xs text-slate-400 border-t border-slate-200 pt-4">
+      <span>AttendEdge Institutional Presentation</span>
+      <span>Slide 03 / 10</span>
+    </div>
+  </section>
+
+  <!-- Slide 4: Computer Vision Pipeline -->
+  <section class="slide flex-col justify-between p-12 lg:p-16 bg-slate-50 text-slate-900">
+    <div>
+      <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Core Biometric Engine</span>
+      <h2 class="text-4xl font-extrabold text-slate-900 tracking-tight mt-1">Deep Learning Biometric Pipeline</h2>
+      <p class="text-slate-500 text-base mt-2">Precision sub-second biometric recognition executing from raw frame capture to database verification.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-5 my-auto">
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="text-xs font-bold text-indigo-600 uppercase">Stage 01</span>
+          <h3 class="text-lg font-bold text-slate-900 mt-2 mb-2">Frame Ingestion</h3>
+          <p class="text-xs text-slate-500 leading-relaxed mb-4">Client captures high-definition RGB frame via HTML5 Canvas WebRTC, normalizing resolution and color channels.</p>
+        </div>
+        <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-200 text-center text-xs font-bold text-slate-700">
+          Input Frame
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="text-xs font-bold text-indigo-600 uppercase">Stage 02</span>
+          <h3 class="text-lg font-bold text-slate-900 mt-2 mb-2">YuNet Detection</h3>
+          <p class="text-xs text-slate-500 leading-relaxed mb-4">Deep ONNX neural network identifies bounding box coordinates and extracts 5 facial landmarks (eyes, nose, mouth corners).</p>
+        </div>
+        <div class="bg-indigo-50 p-2.5 rounded-lg border border-indigo-200 text-center text-xs font-bold text-indigo-700">
+          5 Landmarks
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="text-xs font-bold text-indigo-600 uppercase">Stage 03</span>
+          <h3 class="text-lg font-bold text-slate-900 mt-2 mb-2">SFace Embedding</h3>
+          <p class="text-xs text-slate-500 leading-relaxed mb-4">Face is aligned with affine transformation; SFace CNN extracts 128-dimensional L2-normalized float embeddings.</p>
+        </div>
+        <div class="bg-sky-50 p-2.5 rounded-lg border border-sky-200 text-center text-xs font-bold text-sky-700">
+          128-D Vector
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="text-xs font-bold text-indigo-600 uppercase">Stage 04</span>
+          <h3 class="text-lg font-bold text-slate-900 mt-2 mb-2">Cosine Matching</h3>
+          <p class="text-xs text-slate-500 leading-relaxed mb-4">High-speed cosine distance matched against enrolled student embeddings. Positive attendance if similarity &gt; 0.58.</p>
+        </div>
+        <div class="bg-emerald-50 p-2.5 rounded-lg border border-emerald-200 text-center text-xs font-bold text-emerald-700">
+          Verified Match
+        </div>
+      </div>
+    </div>
+    <div class="bg-slate-900 text-white p-4 rounded-xl flex items-center justify-between text-xs font-semibold">
+      <span>PERFORMANCE BENCHMARK: Sub-150ms verification latency</span>
+      <span>COSINE SIMILARITY THRESHOLD: 0.58</span>
+      <span>LANDMARK ALIGNMENT: 5-Point Sub-pixel</span>
+    </div>
+  </section>
+
+  <!-- Slide 5: Anti-Spoofing & Liveness -->
+  <section class="slide flex-col justify-between p-12 lg:p-16 bg-slate-50 text-slate-900">
+    <div>
+      <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Biometric Security</span>
+      <h2 class="text-4xl font-extrabold text-slate-900 tracking-tight mt-1">Anti-Spoofing & Active Liveness Protection</h2>
+      <p class="text-slate-500 text-base mt-2">Multi-tiered defensive algorithms thwart static photographs, smartphone screen replays, and video spoofs.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-auto">
+      <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Passive Quality Verification</span>
+        <h3 class="text-2xl font-bold text-slate-900 mt-1 mb-4">Autonomous Frame Analysis</h3>
+        <div class="space-y-4">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <h4 class="font-bold text-sm text-slate-900">Laplacian Variance Blur Detection</h4>
+            <p class="text-xs text-slate-600 mt-1">Rejects motion-blurred or low-quality camera frames to ensure only high-fidelity embeddings are registered.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <h4 class="font-bold text-sm text-slate-900">Illumination & Glare Balance</h4>
+            <p class="text-xs text-slate-600 mt-1">Analyzes pixel intensity histograms to detect washouts, deep shadows, and backlight distortions.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <h4 class="font-bold text-sm text-slate-900">Proximity & Scale Checking</h4>
+            <p class="text-xs text-slate-600 mt-1">Verifies that the face occupies optimal frame proportion without extreme digital zoom or truncation.</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">Active Challenge Verification</span>
+        <h3 class="text-2xl font-bold text-slate-900 mt-1 mb-4">Interactive Motion Challenges</h3>
+        <div class="space-y-4">
+          <div class="p-4 rounded-xl bg-emerald-50/50 border border-emerald-200">
+            <h4 class="font-bold text-sm text-slate-900">Randomized Action Prompts</h4>
+            <p class="text-xs text-slate-600 mt-1">Prompts user to perform real-time actions: Blink, Smile, Turn Head Left, or Turn Head Right before enrollment.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-emerald-50/50 border border-emerald-200">
+            <h4 class="font-bold text-sm text-slate-900">Replay Attack Prevention</h4>
+            <p class="text-xs text-slate-600 mt-1">Printed photographs and static screens fail randomized sequence timing and 3D angle verification.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-emerald-50/50 border border-emerald-200">
+            <h4 class="font-bold text-sm text-slate-900">Duplicate Face Alert</h4>
+            <p class="text-xs text-slate-600 mt-1">Compares new face embeddings against all enrolled students to prevent duplicate identity registration.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center justify-between text-xs text-slate-400 border-t border-slate-200 pt-4">
+      <span>AttendEdge Institutional Presentation</span>
+      <span>Slide 05 / 10</span>
+    </div>
+  </section>
+
+  <!-- Slide 6: Scanner & Custom Sessions -->
+  <section class="slide flex-col justify-between p-12 lg:p-16 bg-slate-50 text-slate-900">
+    <div>
+      <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Operational Flexibility</span>
+      <h2 class="text-4xl font-extrabold text-slate-900 tracking-tight mt-1">Live Scanner & Dynamic Session Engine</h2>
+      <p class="text-slate-500 text-base mt-2">Zero pre-made constraints — administrators retain complete freedom over subjects, rooms, and check-in hours.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto">
+      <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="w-8 h-8 rounded-lg bg-indigo-600 text-white font-bold text-sm flex items-center justify-center mb-4">01</div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">On-Demand Sessions</h3>
+          <p class="text-xs text-indigo-600 font-semibold mb-4">No Pre-Set Constraints</p>
+          <ul class="text-sm text-slate-600 space-y-2">
+            <li>• Admin manually inputs exact subject name, room, and session title.</li>
+            <li>• Custom start and end times configured per lecture or lab.</li>
+            <li>• Flexible types: Lectures, Practicals, Seminars, or Special Exams.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="w-8 h-8 rounded-lg bg-emerald-600 text-white font-bold text-sm flex items-center justify-center mb-4">02</div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">Hardware-Controlled Camera</h3>
+          <p class="text-xs text-emerald-600 font-semibold mb-4">Complete Track Release</p>
+          <ul class="text-sm text-slate-600 space-y-2">
+            <li>• Dedicated Stop button stops all media tracks (<code class="text-xs bg-slate-100 px-1 py-0.5 rounded">track.stop()</code>).</li>
+            <li>• Webcam hardware LED turns off immediately when stopped.</li>
+            <li>• Zero background CPU, battery, or camera drain when idle.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="w-8 h-8 rounded-lg bg-sky-600 text-white font-bold text-sm flex items-center justify-center mb-4">03</div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">Automated Rules & Audits</h3>
+          <p class="text-xs text-sky-600 font-semibold mb-4">Strict Integrity</p>
+          <ul class="text-sm text-slate-600 space-y-2">
+            <li>• Unique DB constraint prevents duplicate marking with "Already Marked" alert.</li>
+            <li>• Automatic Late arrival detection based on configurable grace periods.</li>
+            <li>• Dual-tone audio synthesized alerts for instant physical feedback.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center justify-between text-xs text-slate-400 border-t border-slate-200 pt-4">
+      <span>AttendEdge Institutional Presentation</span>
+      <span>Slide 06 / 10</span>
+    </div>
+  </section>
+
+  <!-- Slide 7: Dual-Role Portals -->
+  <section class="slide flex-col justify-between p-12 lg:p-16 bg-slate-50 text-slate-900">
+    <div>
+      <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">User Experience & RBAC</span>
+      <h2 class="text-4xl font-extrabold text-slate-900 tracking-tight mt-1">Tailored Dual-Role Application Portals</h2>
+      <p class="text-slate-500 text-base mt-2">Strict privilege segregation between institutional administrators and enrolled students.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-auto">
+      <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Administrator Portal</span>
+        <h3 class="text-2xl font-bold text-slate-900 mt-1 mb-4">Operational Command Center</h3>
+        <div class="space-y-3 text-sm text-slate-600">
+          <div class="flex items-start gap-2.5">
+            <span class="text-indigo-600 font-bold">✔</span>
+            <div><strong class="text-slate-900">Live Camera Scanner:</strong> Full-screen station with instant student card matches and audio alerts.</div>
+          </div>
+          <div class="flex items-start gap-2.5">
+            <span class="text-indigo-600 font-bold">✔</span>
+            <div><strong class="text-slate-900">Full Student Lifecycle:</strong> Onboarding, face capture, student profile editing, and deletion.</div>
+          </div>
+          <div class="flex items-start gap-2.5">
+            <span class="text-indigo-600 font-bold">✔</span>
+            <div><strong class="text-slate-900">Manual Attendance Correction:</strong> Correct attendance status with mandatory justification logs.</div>
+          </div>
+          <div class="flex items-start gap-2.5">
+            <span class="text-indigo-600 font-bold">✔</span>
+            <div><strong class="text-slate-900">One-Click CSV Export:</strong> Multi-filtered attendance records formatted for administrative audits.</div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">Student Portal</span>
+        <h3 class="text-2xl font-bold text-slate-900 mt-1 mb-4">Transparent Self-Service</h3>
+        <div class="space-y-3 text-sm text-slate-600">
+          <div class="flex items-start gap-2.5">
+            <span class="text-emerald-600 font-bold">✔</span>
+            <div><strong class="text-slate-900">Aggregate Attendance Dial:</strong> Real-time percentage tracking against the 75% institutional requirement.</div>
+          </div>
+          <div class="flex items-start gap-2.5">
+            <span class="text-emerald-600 font-bold">✔</span>
+            <div><strong class="text-slate-900">Subject Breakdown Cards:</strong> Conducted vs attended lectures with individual subject compliance.</div>
+          </div>
+          <div class="flex items-start gap-2.5">
+            <span class="text-emerald-600 font-bold">✔</span>
+            <div><strong class="text-slate-900">Defaulter & Eligibility Warning:</strong> Instant visual indicators when attendance drops below safe exam thresholds.</div>
+          </div>
+          <div class="flex items-start gap-2.5">
+            <span class="text-emerald-600 font-bold">✔</span>
+            <div><strong class="text-slate-900">Immutable Session Timeline:</strong> Timestamped record of every verified lecture check-in.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center justify-between text-xs text-slate-400 border-t border-slate-200 pt-4">
+      <span>AttendEdge Institutional Presentation</span>
+      <span>Slide 07 / 10</span>
+    </div>
+  </section>
+
+  <!-- Slide 8: Analytics & Audit -->
+  <section class="slide flex-col justify-between p-12 lg:p-16 bg-slate-50 text-slate-900">
+    <div>
+      <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Institutional Governance</span>
+      <h2 class="text-4xl font-extrabold text-slate-900 tracking-tight mt-1">Analytics, Audit Compliance & Intelligence</h2>
+      <p class="text-slate-500 text-base mt-2">Comprehensive data visualization and immutable audit logging ensuring zero dispute liability.</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+      <div class="bg-white p-5 rounded-xl border border-slate-200 text-center">
+        <div class="text-3xl font-extrabold text-indigo-600">&lt;150ms</div>
+        <div class="text-xs font-bold text-slate-500 uppercase mt-1">Scan Latency</div>
+      </div>
+      <div class="bg-white p-5 rounded-xl border border-slate-200 text-center">
+        <div class="text-3xl font-extrabold text-emerald-600">100%</div>
+        <div class="text-xs font-bold text-slate-500 uppercase mt-1">Proxy Elimination</div>
+      </div>
+      <div class="bg-white p-5 rounded-xl border border-slate-200 text-center">
+        <div class="text-3xl font-extrabold text-sky-600">75%</div>
+        <div class="text-xs font-bold text-slate-500 uppercase mt-1">Exam Eligibility Bar</div>
+      </div>
+      <div class="bg-white p-5 rounded-xl border border-slate-200 text-center">
+        <div class="text-3xl font-extrabold text-amber-500">Zero</div>
+        <div class="text-xs font-bold text-slate-500 uppercase mt-1">Lost Lecture Time</div>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-auto">
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+        <h4 class="font-bold text-base text-slate-900 mb-2">Dynamic Recharts Analytics</h4>
+        <p class="text-xs text-slate-600 leading-relaxed mb-3">Interactive visual trends comparing attendance across subjects, days of the week, and student cohorts.</p>
+        <ul class="text-xs text-slate-500 space-y-1.5">
+          <li>• Instant identification of low-engagement lecture sessions.</li>
+          <li>• Dedicated Absentee filter view for proctor follow-ups.</li>
+        </ul>
+      </div>
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+        <h4 class="font-bold text-base text-slate-900 mb-2">Mandatory Audit Trail</h4>
+        <p class="text-xs text-slate-600 leading-relaxed mb-3">Strict audit trail requiring an authorized reason for every manual status override or record adjustment.</p>
+        <ul class="text-xs text-slate-500 space-y-1.5">
+          <li>• Tracks editor identity, original status, new status, and timestamp.</li>
+          <li>• Meets university accreditation and regulatory inspection standards.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="flex items-center justify-between text-xs text-slate-400 border-t border-slate-200 pt-4">
+      <span>AttendEdge Institutional Presentation</span>
+      <span>Slide 08 / 10</span>
+    </div>
+  </section>
+
+  <!-- Slide 9: Institutional Value -->
+  <section class="slide flex-col justify-between p-12 lg:p-16 bg-slate-50 text-slate-900">
+    <div>
+      <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Return on Investment</span>
+      <h2 class="text-4xl font-extrabold text-slate-900 tracking-tight mt-1">Real-World Institutional Value</h2>
+      <p class="text-slate-500 text-base mt-2">Measurable academic gains and significant cost savings over expensive hardware alternatives.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto">
+      <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase bg-indigo-50 text-indigo-600 border border-indigo-200 mb-4">Cost Efficiency</span>
+        <h3 class="text-xl font-bold text-slate-900 mb-3">Zero Proprietary Hardware Costs</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">Runs on standard institutional laptops, tablets, or basic USB webcams. Completely eliminates the need for expensive biometric turnstiles and recurring annual maintenance contracts.</p>
+      </div>
+      <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase bg-emerald-50 text-emerald-600 border border-emerald-200 mb-4">Time Savings</span>
+        <h3 class="text-xl font-bold text-slate-900 mb-3">Recovers 40+ Lecture Hours</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">Reduces attendance verification to a seamless walk-by scan. Faculty members preserve 100% of their lecture time for teaching instead of spending 15 minutes calling roll.</p>
+      </div>
+      <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase bg-sky-50 text-sky-600 border border-sky-200 mb-4">Institutional Trust</span>
+        <h3 class="text-xl font-bold text-slate-900 mb-3">Fraud-Proof Compliance</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">Complete elimination of proxy sign-ins and identity tampering. Defensible audit records protect the college during accreditation reviews and semester eligibility disputes.</p>
+      </div>
+    </div>
+    <div class="flex items-center justify-between text-xs text-slate-400 border-t border-slate-200 pt-4">
+      <span>AttendEdge Institutional Presentation</span>
+      <span>Slide 09 / 10</span>
+    </div>
+  </section>
+
+  <!-- Slide 10: Conclusion & Q&A (Dark Theme) -->
+  <section class="slide flex-col justify-between p-12 lg:p-20 bg-slate-900 text-white relative">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(79,70,229,0.25),rgba(255,255,255,0))] pointer-events-none"></div>
+    <div class="relative z-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800 border border-indigo-500/30 text-indigo-300 text-xs font-bold tracking-wide uppercase">
+        Summary & Conclusion
+      </div>
+    </div>
+    <div class="relative z-10 my-auto text-center max-w-4xl mx-auto">
+      <h2 class="text-4xl lg:text-5xl font-extrabold text-white mb-4 tracking-tight">
+        Smart, Contactless & Fraud-Proof Attendance
+      </h2>
+      <p class="text-lg text-slate-400 mb-10 max-w-2xl mx-auto">
+        Transforming campus administration with high-speed computer vision, active liveness verification, and effortless institutional compliance.
+      </p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mb-12">
+        <div class="p-3.5 rounded-xl bg-slate-800 border border-slate-700 text-xs font-bold text-slate-300">
+          Sub-150ms Speed
+        </div>
+        <div class="p-3.5 rounded-xl bg-slate-800 border border-slate-700 text-xs font-bold text-slate-300">
+          Anti-Spoof Defense
+        </div>
+        <div class="p-3.5 rounded-xl bg-slate-800 border border-slate-700 text-xs font-bold text-slate-300">
+          Hardware Release
+        </div>
+        <div class="p-3.5 rounded-xl bg-slate-800 border border-slate-700 text-xs font-bold text-slate-300">
+          Audit Accountability
+        </div>
+      </div>
+      <div class="text-3xl font-extrabold text-white mb-2">Thank You!</div>
+      <p class="text-slate-400 text-sm">We welcome your questions and are ready for the live system demonstration.</p>
+    </div>
+    <div class="relative z-10 flex items-center justify-between border-t border-slate-800 pt-6 text-sm text-slate-400">
+      <div>AttendEdge • Face Recognition Attendance Management System</div>
+      <div>Open for Questions & Discussion</div>
+    </div>
+  </section>
+
+  <!-- Interactive Navigation Controls Bar -->
+  <div class="nav-controls fixed bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-3 bg-slate-900/90 backdrop-blur-md px-5 py-2.5 rounded-full border border-slate-700 shadow-2xl z-50">
+    <button onclick="prevSlide()" class="p-2 rounded-full hover:bg-slate-800 text-slate-300 hover:text-white transition-colors" title="Previous Slide (Left Arrow)">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+    </button>
+    <div id="slideCounter" class="text-xs font-bold text-slate-300 px-3 tracking-wider">
+      01 / 10
+    </div>
+    <button onclick="nextSlide()" class="p-2 rounded-full hover:bg-slate-800 text-slate-300 hover:text-white transition-colors" title="Next Slide (Right Arrow or Space)">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    </button>
+    <div class="h-4 w-px bg-slate-700 mx-1"></div>
+    <button onclick="toggleFullScreen()" class="p-2 rounded-full hover:bg-slate-800 text-slate-300 hover:text-white transition-colors" title="Toggle Fullscreen (F)">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+    </button>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const counter = document.getElementById('slideCounter');
+    const progressBar = document.getElementById('progressBar');
+
+    function updateSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= totalSlides) index = totalSlides - 1;
+      slides[currentSlide].classList.remove('active');
+      currentSlide = index;
+      slides[currentSlide].classList.add('active');
+      counter.textContent = String(currentSlide + 1).padStart(2, '0') + ' / ' + String(totalSlides).padStart(2, '0');
+      progressBar.style.width = ((currentSlide + 1) / totalSlides * 100) + '%';
+    }
+
+    function nextSlide() {
+      updateSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      updateSlide(currentSlide - 1);
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => console.log(err));
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevSlide();
+      } else if (e.key === 'Home') {
+        updateSlide(0);
+      } else if (e.key === 'End') {
+        updateSlide(totalSlides - 1);
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullScreen();
+      }
+    });
+  </script>
+</body>
+</html>

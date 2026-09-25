@@ -7,7 +7,11 @@ backend/models_cache/
 .pytest_cache/
 backend/.pytest_cache/
 *.db
+*.db-shm
+*.db-wal
 backend/*.db
+backend/*.db-shm
+backend/*.db-wal
 *.py[cod]
 
 # Frontend dependencies and build output
