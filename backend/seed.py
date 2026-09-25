@@ -19,7 +19,7 @@ def seed_database():
 
     try:
         # 1. Admin Account
-        admin_email = "admin@ins.edu"
+        admin_email = "admin@institute.edu"
         admin = db.query(User).filter(User.email == admin_email).first()
         if not admin:
             print("[Seed] Creating primary Administrator...")
@@ -54,14 +54,62 @@ def seed_database():
 
         # 3. Students
         students_data = [
-            ("Aarav Sharma", "aarav.sharma@ins.edu", "9123456781", "CS2026001", "Computer Science & Engineering"),
-            ("Diya Patel", "diya.patel@ins.edu", "9123456782", "CS2026002", "Computer Science & Engineering"),
-            ("Rohan Verma", "rohan.verma@ins.edu", "9123456783", "CS2026003", "Computer Science & Engineering"),
-            ("Ananya Iyer", "ananya.iyer@ins.edu", "9123456784", "CS2026004", "Computer Science & Engineering"),
-            ("Kabir Mehta", "kabir.mehta@ins.edu", "9123456785", "EC2026001", "Electronics & Communication"),
-            ("Sneha Reddy", "sneha.reddy@ins.edu", "9123456786", "EC2026002", "Electronics & Communication"),
-            ("Vikram Malhotra", "vikram.m@ins.edu", "9123456787", "AS2026001", "Applied Sciences"),
-            ("Pooja Nair", "pooja.nair@ins.edu", "9123456788", "AS2026002", "Applied Sciences"),
+            (
+                "Aarav Sharma",
+                "aarav.sharma@institute.edu",
+                "9123456781",
+                "CS2026001",
+                "Computer Science & Engineering",
+            ),
+            (
+                "Diya Patel",
+                "diya.patel@institute.edu",
+                "9123456782",
+                "CS2026002",
+                "Computer Science & Engineering",
+            ),
+            (
+                "Rohan Verma",
+                "rohan.verma@institute.edu",
+                "9123456783",
+                "CS2026003",
+                "Computer Science & Engineering",
+            ),
+            (
+                "Ananya Iyer",
+                "ananya.iyer@institute.edu",
+                "9123456784",
+                "CS2026004",
+                "Computer Science & Engineering",
+            ),
+            (
+                "Kabir Mehta",
+                "kabir.mehta@institute.edu",
+                "9123456785",
+                "EC2026001",
+                "Electronics & Communication",
+            ),
+            (
+                "Sneha Reddy",
+                "sneha.reddy@institute.edu",
+                "9123456786",
+                "EC2026002",
+                "Electronics & Communication",
+            ),
+            (
+                "Vikram Malhotra",
+                "vikram.m@institute.edu",
+                "9123456787",
+                "AS2026001",
+                "Applied Sciences",
+            ),
+            (
+                "Pooja Nair",
+                "pooja.nair@institute.edu",
+                "9123456788",
+                "AS2026002",
+                "Applied Sciences",
+            ),
         ]
 
         created_students = []

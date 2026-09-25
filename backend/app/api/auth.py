@@ -111,32 +111,51 @@ def login(
     - Student ID (e.g. STU-2026-000101)
     """
     identifier = payload.identifier.strip()
+    clean_id = identifier.lower().strip()
     user: Optional[User] = None
     student_obj: Optional[Student] = None
 
-    # 1. Try by Email
-    if "@" in identifier:
-        user = db.query(User).filter(User.email.ilike(identifier)).first()
-    
-    # 2. Try by 10-digit Phone
-    elif identifier.isdigit() and len(identifier) == 10:
+    # 1. Admin shortcut or common admin email alias
+    # (Matches 'admin', 'administrator', or any admin@... like admin@ins.edu, admin@institute.edu, admin@institution.edu)
+    if clean_id in ["admin", "administrator"] or clean_id.startswith("admin@"):
+        # First check if an exact email match exists in DB
+        exact_user = db.query(User).filter(User.email.ilike(clean_id)).first()
+        if exact_user:
+            user = exact_user
+        else:
+            # If not exact, resolve to the primary administrator account
+            user = db.query(User).filter(User.role == "ADMIN").first()
+
+    # 2. Try by Email
+    if not user and "@" in identifier:
+        user = db.query(User).filter(User.email.ilike(clean_id)).first()
+
+    # 3. Try by 10-digit Phone
+    if not user and identifier.isdigit() and len(identifier) == 10:
         user = db.query(User).filter(User.phone == identifier).first()
 
-    # 3. Try by Student ID
-    elif identifier.upper().startswith("STU-") or "-" in identifier:
-        student_obj = db.query(Student).filter(Student.student_id == identifier.upper()).first()
+    # 4. Try by Student ID (e.g. STU-2026-000101, case-insensitive)
+    if not user and (clean_id.startswith("stu-") or "-" in identifier):
+        student_obj = db.query(Student).filter(Student.student_id.ilike(identifier)).first()
         if student_obj:
             user = db.query(User).filter(User.id == student_obj.user_id).first()
 
-    # 4. Fallback search across email, phone, and student ID
+    # 5. Try by Roll Number (e.g. '0001', '1', 'CS101', etc.)
     if not user:
-        # Check student ID case-insensitively
-        student_obj = db.query(Student).filter(Student.student_id.ilike(identifier)).first()
+        student_obj = db.query(Student).filter(Student.roll_number.ilike(identifier)).first()
+        if student_obj:
+            user = db.query(User).filter(User.id == student_obj.user_id).first()
+
+    # 6. Fallback search across email, phone, student ID, and roll number
+    if not user:
+        student_obj = db.query(Student).filter(
+            (Student.student_id.ilike(identifier)) | (Student.roll_number.ilike(identifier))
+        ).first()
         if student_obj:
             user = db.query(User).filter(User.id == student_obj.user_id).first()
         else:
             user = db.query(User).filter(
-                (User.email.ilike(identifier)) | (User.phone == identifier)
+                (User.email.ilike(clean_id)) | (User.phone == identifier)
             ).first()
 
     # If user still not found
@@ -150,7 +169,7 @@ def login(
         )
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid credentials. Please verify your Email, Phone, or Student ID and password."
+            detail=f"Account not found for '{identifier}'. Please check your Email, Phone, or Student ID."
         )
 
     # Check account active

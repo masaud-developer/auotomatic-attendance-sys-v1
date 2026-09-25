@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { School, ShieldCheck, Mail, Phone, Hash, Lock, ArrowRight, AlertCircle } from 'lucide-react';
+import { School, ShieldCheck, Mail, Phone, Hash, ArrowRight, AlertCircle, Eye, EyeOff, Sparkles } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { api } from '../services/api';
 
@@ -7,6 +7,7 @@ export const LoginPage: React.FC = () => {
   const { login, isAuthenticated, isAdmin } = useAuth();
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'email' | 'phone' | 'student_id'>('email');
@@ -124,21 +125,21 @@ export const LoginPage: React.FC = () => {
 
           <div>
             <label className="block text-xs font-semibold text-slate-700 mb-1.5">
-              {activeTab === 'email' && 'Email Address'}
+              {activeTab === 'email' && 'Email Address or Username'}
               {activeTab === 'phone' && '10-Digit Mobile Phone'}
-              {activeTab === 'student_id' && 'Unique Student ID'}
+              {activeTab === 'student_id' && 'Unique Student ID or Roll Number'}
             </label>
             <div className="relative">
               <input
-                type={activeTab === 'email' ? 'email' : 'text'}
+                type={activeTab === 'email' ? 'text' : 'text'}
                 value={identifier}
                 onChange={(e) => setIdentifier(e.target.value)}
                 placeholder={
                   activeTab === 'email'
-                    ? 'user@college.edu'
+                    ? 'admin@institution.edu or admin'
                     : activeTab === 'phone'
                     ? '9876543210'
-                    : 'STU-2026-000101'
+                    : 'STU-2026-000101 or 0001'
                 }
                 required
                 className="w-full pl-3.5 pr-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 placeholder-slate-400 focus:outline-hidden focus:border-slate-800 focus:ring-1 focus:ring-slate-800 transition-colors"
@@ -150,20 +151,28 @@ export const LoginPage: React.FC = () => {
             <label className="block text-xs font-semibold text-slate-700 mb-1.5">Password</label>
             <div className="relative">
               <input
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
                 required
-                className="w-full pl-3.5 pr-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 placeholder-slate-400 focus:outline-hidden focus:border-slate-800 focus:ring-1 focus:ring-slate-800 transition-colors"
+                className="w-full pl-3.5 pr-10 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 placeholder-slate-400 focus:outline-hidden focus:border-slate-800 focus:ring-1 focus:ring-slate-800 transition-colors"
               />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 focus:outline-hidden"
+                title={showPassword ? 'Hide password' : 'Show password'}
+              >
+                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              </button>
             </div>
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-2.5 px-4 rounded-xl bg-slate-900 text-white text-sm font-semibold hover:bg-slate-800 focus:outline-hidden focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 flex items-center justify-center gap-2 transition-all disabled:opacity-50"
+            className="w-full py-2.5 px-4 rounded-xl bg-slate-900 text-white text-sm font-semibold hover:bg-slate-800 focus:outline-hidden focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 flex items-center justify-center gap-2 transition-all disabled:opacity-50 cursor-pointer"
           >
             {loading ? (
               <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -174,6 +183,42 @@ export const LoginPage: React.FC = () => {
               </>
             )}
           </button>
+
+          {/* Quick Helper Credentials Card */}
+          <div className="mt-4 p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 text-xs">
+            <div className="flex items-center justify-between mb-2">
+              <span className="font-semibold text-slate-700 flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
+                Default Credentials
+              </span>
+              <button
+                type="button"
+                onClick={() => {
+                  setActiveTab('email');
+                  setIdentifier('admin');
+                  setPassword('AdminPass123!');
+                  setError(null);
+                }}
+                className="text-[11px] font-bold text-indigo-600 hover:text-indigo-800 bg-indigo-50 hover:bg-indigo-100 px-2 py-0.5 rounded-md transition-colors cursor-pointer"
+              >
+                Auto-fill Admin
+              </button>
+            </div>
+            <div className="space-y-1 text-slate-500 text-[11px]">
+              <div className="flex justify-between items-center">
+                <span>Admin Login:</span>
+                <span className="font-mono text-slate-700 font-semibold bg-white px-1.5 py-0.5 rounded border border-slate-200">
+                  admin / AdminPass123!
+                </span>
+              </div>
+              <div className="flex justify-between items-center pt-0.5">
+                <span>Student Login:</span>
+                <span className="font-mono text-slate-700 font-medium">
+                  STU-2026-000101 (or Roll 0001)
+                </span>
+              </div>
+            </div>
+          </div>
         </form>
 
         <div className="px-8 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-center text-[11px] text-slate-500 gap-1.5">
