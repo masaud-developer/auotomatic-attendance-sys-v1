@@ -3,7 +3,10 @@ backend/venv/
 backend/.venv/
 backend/__pycache__/
 backend/**/__pycache__/
+backend/models_cache/
+.pytest_cache/
 backend/.pytest_cache/
+*.db
 backend/*.db
 *.py[cod]
 
