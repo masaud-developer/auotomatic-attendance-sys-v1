@@ -43,14 +43,15 @@ class FaceDetector:
                 print(f"[Biometrics] YuNet initialization error: {e}. Falling back to Haar.")
                 self.yunet = None
 
-        # 2. Initialize built-in Haar Cascade fallback
-        try:
-            face_cascade_path = cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
-            eye_cascade_path = cv2.data.haarcascades + "haarcascade_eye.xml"
-            self.haar_face = cv2.CascadeClassifier(face_cascade_path)
-            self.haar_eye = cv2.CascadeClassifier(eye_cascade_path)
-        except Exception as e:
-            print(f"[Biometrics] Error loading Haar cascades: {e}")
+        # 2. Initialize built-in Haar Cascade fallback if available
+        if hasattr(cv2, "CascadeClassifier") and hasattr(cv2, "data") and hasattr(cv2.data, "haarcascades"):
+            try:
+                face_cascade_path = cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
+                eye_cascade_path = cv2.data.haarcascades + "haarcascade_eye.xml"
+                self.haar_face = cv2.CascadeClassifier(face_cascade_path)
+                self.haar_eye = cv2.CascadeClassifier(eye_cascade_path)
+            except Exception as e:
+                print(f"[Biometrics] Error loading Haar cascades: {e}")
 
     def detect_faces(self, image: np.ndarray) -> List[Dict[str, Any]]:
         """
